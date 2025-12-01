@@ -1,0 +1,84 @@
+.kotlin
+
+### IntelliJ IDEA ###
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### Archivos de pruebas automatizadas con Serenity BDD
+target/
+.serenity/
+.serenity-cache/
+.serenity-output/
+serenity.log
+
+### Informes y resultados de ejecución
+*.html
+*.json
+*.xml
+*.pdf
+*.png
+*.jpg
+*.jpeg
+
+### Gradle ###
+.gradle
+build/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### Configuración de IDEs ###
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.launch
+
+### Java ###
+*.class
+*.jar
+*.war
+*.ear
+
+### Archivos temporales y de sistema ###
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+Thumbs.db
+
+### Archivos de texto generados ###
+# *.txt
+# *.xml
+# *.pdf
+
+### Cucumber
+cucumber-report/
+cucumber.json
+
+### JUnit/TestNG
+test-output/
+surefire-reports/
