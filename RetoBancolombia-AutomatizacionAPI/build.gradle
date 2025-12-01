@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+group = 'co.com.prueba.bancolombia'
+version = '1.0-SNAPSHOT'
+
+def jUnitVersion = '5.9.2'
+def karateVersion = '1.5.0.RC4'
+def cucumberReportingVersion = '5.8.1'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    implementation "io.karatelabs:karate-core:${karateVersion}"
+    implementation "io.karatelabs:karate-junit5:${karateVersion}"
+    implementation "net.masterthought:cucumber-reporting:${cucumberReportingVersion}"
+
+    implementation "org.junit.jupiter:junit-jupiter-api:${jUnitVersion}"
+    implementation "org.junit.jupiter:junit-jupiter-engine:${jUnitVersion}"
+
+    implementation "com.intuit.karate:karate-apache:0.9.6"
+    implementation "org.apache.httpcomponents.client5:httpclient5:5.2.1"
+
+    implementation "org.slf4j:slf4j-simple:2.0.5"
+}
+
+test {
+    useJUnitPlatform()
+    include '**/*Runner*'
+    systemProperties System.getProperties()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}

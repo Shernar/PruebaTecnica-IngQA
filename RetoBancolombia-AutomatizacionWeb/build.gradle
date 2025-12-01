@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+    id 'net.serenity-bdd.serenity-gradle-plugin' version '4.2.34'
+    id 'org.gradle.test-retry' version '1.6.2'
+}
+
+group = 'co.com.prueba.bancolombia'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    implementation 'net.serenity-bdd:serenity-core:4.2.34'
+    implementation 'net.serenity-bdd:serenity-junit:4.2.34'
+    implementation 'net.serenity-bdd:serenity-cucumber:4.2.34'
+    implementation 'net.serenity-bdd:serenity-screenplay:4.2.34'
+    implementation 'net.serenity-bdd:serenity-screenplay-rest:4.2.34'
+    implementation 'net.serenity-bdd:serenity-screenplay-webdriver:4.2.34'
+
+    implementation 'io.github.bonigarcia:webdrivermanager:6.3.2'
+    implementation 'com.codoid.products:fillo:1.21'
+    implementation 'com.github.javafaker:javafaker:1.0.2'
+    implementation 'org.seleniumhq.selenium:selenium-java:4.29.0'
+    implementation 'org.apache.poi:poi:5.4.0'
+    implementation 'org.apache.poi:poi-ooxml:5.4.0'
+    implementation 'commons-io:commons-io:2.18.0'
+    implementation 'io.appium:java-client:8.6.0'
+
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+    annotationProcessor 'org.projectlombok:lombok:1.18.36'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    maxParallelForks = 5
+    systemProperties = System.properties
+
+    testLogging.showStandardStreams = true
+
+    finalizedBy("aggregate")
+}
+
+serenity {
+    outputDirectory = file("target/site/serenity")
+    reports = ["single-page-html"]
+}
+
+gradle.startParameter.continueOnFailure = true
+
+defaultTasks "clean", "test", "aggregate", "reports"
